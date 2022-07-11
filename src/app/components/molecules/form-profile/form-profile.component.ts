@@ -41,7 +41,6 @@ export class FormProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('payload', this.payload);
     this.profileForm = this.fb.group({
       _id: [''],
       email: ['', Validators.required],
@@ -49,7 +48,6 @@ export class FormProfileComponent implements OnInit {
     });
 
     this.editForm();
-    // console.log('payload pf', this.profileForm);
   }
 
   editForm() {
@@ -59,20 +57,17 @@ export class FormProfileComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.profileForm.valid) {
-      console.log(this.profileForm.value);
       const updateResponse = this.service.updateProfile(
         this.profileForm.value,
         this.profileForm.value._id
       );
       updateResponse.subscribe(
         (response) => {
-          // console.log(`response `, response);
           this._toastService.success('Data Berhasil Disimpan');
           // this.profileForm.reset();
         },
         (err) => {
           const msg = err.error.data.errors;
-          // console.log('errorMessage: ', msg);
           this._toastService.error('Data Gagal Disimpan');
 
           Object.entries(msg).map(([key, value]: any) => {

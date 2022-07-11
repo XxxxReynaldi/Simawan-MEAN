@@ -73,7 +73,6 @@ export class ModalJurusanComponent implements OnInit {
       } else {
         this.jurusanForm.patchValue({ ...this.jurusanForm.value, status: 'N' });
       }
-      // console.log('register', this.jurusanForm.value);
 
       switch (this.fromParent.prefix) {
         case 'Tambah':
@@ -83,14 +82,12 @@ export class ModalJurusanComponent implements OnInit {
 
           storeResponse.subscribe(
             (response) => {
-              // console.log(`response `, response);
               this._toastService.success('Data Berhasil Ditambahkan');
               this.jurusanForm.reset();
               this.closeModal();
             },
             (err) => {
               const msg = err.error.data.errors;
-              // console.log('errorMessage: ', msg);
               this._toastService.error('Data Gagal Ditambahkan');
 
               if (msg.hasOwnProperty('kode')) {
@@ -108,14 +105,12 @@ export class ModalJurusanComponent implements OnInit {
           );
           updateResponse.subscribe(
             (response) => {
-              // console.log(`response `, response);
               this._toastService.success('Data Berhasil Disimpan');
               this.jurusanForm.reset();
               this.closeModal();
             },
             (err) => {
               const msg = err.error.data.errors;
-              // console.log('errorMessage: ', msg);
               this._toastService.error('Data Gagal Disimpan');
 
               if (msg.hasOwnProperty('kode')) {

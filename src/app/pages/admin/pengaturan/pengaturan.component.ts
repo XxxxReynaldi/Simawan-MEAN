@@ -32,7 +32,6 @@ export class PengaturanComponent implements OnInit {
     const token = localStorage.getItem('token') as any;
     const userPayload = jwtDecode(token) as any;
     this.dataUser = userPayload.user;
-    // console.log('this.dataUser', this.dataUser);
   }
 
   ngOnInit(): void {
@@ -43,12 +42,10 @@ export class PengaturanComponent implements OnInit {
     this.userService.getDataUser(this.dataUser.id).subscribe(
       (response: any) => {
         this.user = response.data;
-        // console.log('user', this.user);
         this.iconUserProfile = `${this.IMAGE_API_URL}/user/${response.data.foto}`;
       },
       (err) => {
         const msg = err.message;
-        // console.log('errorMessage: ', msg);
         this._toastService.error(msg);
       }
     );
@@ -68,11 +65,8 @@ export class PengaturanComponent implements OnInit {
     modalRef.componentInstance.fromParent = data;
     modalRef.result
       .then((result) => {
-        console.log(result);
-        this.getUser()
+        this.getUser();
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }
 }

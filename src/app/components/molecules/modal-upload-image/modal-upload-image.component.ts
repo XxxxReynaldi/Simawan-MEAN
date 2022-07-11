@@ -47,7 +47,6 @@ export class ModalUploadImageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('fromParent', this.fromParent);
     this.uploadImgForm = this.fb.group({
       _id: [''],
       foto: [null],
@@ -60,7 +59,6 @@ export class ModalUploadImageComponent implements OnInit {
 
   editForm() {
     this.uploadImgForm.patchValue({ ...this.fromParent.payload });
-    console.log('this.fromParent.payload', this.fromParent.payload);
     this.defaultPreview = `${this.IMAGE_API_URL}/user/${this.fromParent.payload.foto}`;
   }
 
@@ -79,9 +77,7 @@ export class ModalUploadImageComponent implements OnInit {
       .then((result) => {
         this.editForm();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   };
 
   closeModal() {
@@ -116,7 +112,7 @@ export class ModalUploadImageComponent implements OnInit {
     this.submitted = true;
 
     if (this.uploadImgForm.valid) {
-      console.log(this.uploadImgForm.value);
+      // console.log(this.uploadImgForm.value);
       const formData: FormData = new FormData();
       formData.append('foto', this.uploadImgForm.get('foto')?.value);
 
@@ -126,13 +122,11 @@ export class ModalUploadImageComponent implements OnInit {
       );
       updateResponse.subscribe(
         (response) => {
-          // console.log(`response `, response);
           this._toastService.success('Data Berhasil Disimpan');
           this.closeModal();
         },
         (err) => {
           const msg = err;
-          console.log('errorMessage: ', msg);
           this._toastService.error('Data Gagal Disimpan');
 
           Object.entries(msg).map(([key, value]: any) => {

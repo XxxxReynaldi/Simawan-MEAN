@@ -52,8 +52,6 @@ export class ModalKelasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('fromParent', this.fromParent);
-
     this.listJurusan = this.fromParent.listJurusan;
     this.kelasForm = this.fb.group({
       _id: [''],
@@ -162,14 +160,12 @@ export class ModalKelasComponent implements OnInit {
 
           storeResponse.subscribe(
             (response) => {
-              // console.log(`response `, response);
               this._toastService.success('Data Berhasil Ditambahkan');
               this.kelasForm.reset();
               this.closeModal();
             },
             (err) => {
               const msg = err.error.data.errors;
-              // console.log('errorMessage: ', msg);
               this._toastService.error('Data Gagal Ditambahkan');
 
               Object.entries(msg).map(([key, value]: any) => {
@@ -189,14 +185,12 @@ export class ModalKelasComponent implements OnInit {
           );
           updateResponse.subscribe(
             (response) => {
-              // console.log(`response `, response);
               this._toastService.success('Data Berhasil Disimpan');
               this.kelasForm.reset();
               this.closeModal();
             },
             (err) => {
               const msg = err.error.data.errors;
-              // console.log('errorMessage: ', msg);
               this._toastService.error('Data Gagal Disimpan');
 
               Object.entries(msg).map(([key, value]: any) => {

@@ -72,8 +72,6 @@ export class RegisterComponent implements OnInit {
   proceedRegister() {
     this.submitted = true;
     if (this.registerForm.valid) {
-      console.log('register', this.registerForm.value);
-
       this.service.setSignUp(this.registerForm.value).subscribe(
         (result) => {
           if (result != null) {
@@ -84,7 +82,6 @@ export class RegisterComponent implements OnInit {
           }
         },
         (err) => {
-          console.log('Error: ', err.error.fields);
           const msg = err.error.fields;
           this._toastService.error(err);
 

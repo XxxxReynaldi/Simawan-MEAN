@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     return this.login.controls;
   }
   ngOnInit(): void {
-    console.log('this.login', this.login);
+    // console.log('this.login', this.login);
   }
 
   login = new FormGroup({
@@ -49,10 +49,8 @@ export class LoginComponent implements OnInit {
           }
         },
         (err) => {
-          console.log('Error: ', err.error.fields);
           const msg = err.error.fields;
 
-          console.log('errorMessage: ', msg);
           if (msg.hasOwnProperty('email')) {
             this.myForm['email'].setErrors({ incorrect: true });
             this.errorMessage = msg.email.message;

@@ -72,7 +72,6 @@ export class ModalValidasiSiswaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('fromParent', this.fromParent);
     this.listKelas = this.fromParent.listKelas;
     this.validasiForm = this.fb.group({
       _id: [''],
@@ -84,10 +83,6 @@ export class ModalValidasiSiswaComponent implements OnInit {
     this.validasiForm.patchValue({ ...this.fromParent.payload });
     this.user = { ...this.fromParent.payload };
     // this.cardKelas = { ...this.fromParent.listKelas };
-
-    console.log('this.user', this.user);
-    console.log('this.cardKelas', this.cardKelas);
-    console.log('this.validasiForm.value', this.validasiForm.value);
   }
 
   closeModal() {
@@ -103,12 +98,11 @@ export class ModalValidasiSiswaComponent implements OnInit {
     const prefixNIS = prefixKode + infixKode;
 
     this.validasiForm.patchValue({ ...this.fromParent.payload, prefixNIS });
-    // console.log('prefixNIS', this.validasiForm.value);
   }
 
   handleNIS() {
     const kelas = this.validasiForm.get('kelas')?.value as any;
-    console.log('kelas', kelas);
+
     if (kelas === null) {
       this.myForm['kelas'].setErrors({ incorrect: true });
       this.errorMessage['kelas'] = 'Kelas harus diisi';
@@ -119,7 +113,6 @@ export class ModalValidasiSiswaComponent implements OnInit {
 
     generateNIS.subscribe(
       (response) => {
-        // console.log(`response `, response);
         this.validasiForm.patchValue({
           ...this.fromParent.payload,
           NIS: response.data,
@@ -128,8 +121,7 @@ export class ModalValidasiSiswaComponent implements OnInit {
       },
       (err) => {
         const msg = err;
-        console.log('errorMessage: ', msg);
-        // this._toastService.error('Data Gagal Ditambahkan');
+        this._toastService.error('Data Gagal Digenerate');
 
         Object.entries(msg).map(([key, value]: any) => {
           if (msg.hasOwnProperty(key)) {
@@ -151,15 +143,13 @@ export class ModalValidasiSiswaComponent implements OnInit {
 
       validation.subscribe(
         (response) => {
-          console.log(`response `, response);
           this.validasiForm.reset();
           this._toastService.success(response.message);
           this.closeModal();
         },
         (err) => {
           const msg = err;
-          console.log('errorMessage: ', msg);
-          // this._toastService.error('Data Gagal Ditambahkan');
+          this._toastService.error('Data Gagal Divalidasi');
 
           Object.entries(msg).map(([key, value]: any) => {
             if (msg.hasOwnProperty(key)) {

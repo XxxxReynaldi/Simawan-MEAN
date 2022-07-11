@@ -71,12 +71,10 @@ export class ValidasiComponent implements OnInit, OnDestroy {
       .getAllValidation({ validasi: 'pending' })
       .subscribe(
         (response: any) => {
-          // console.log('response listUser', response);
           this.listUser = response.data;
         },
         (err) => {
           const msg = err.message;
-          // console.log('errorMessage: ', msg);
           this._toastService.error(msg);
         }
       );
@@ -85,12 +83,11 @@ export class ValidasiComponent implements OnInit, OnDestroy {
   getListKelas() {
     this.kelasService.getAllKelas().subscribe(
       (response: any) => {
-        // console.log('response Kelas', response);
         this.listKelas = response.data;
       },
       (err) => {
         const msg = err.message;
-        // console.log('errorMessage: ', msg);
+
         this._toastService.error(msg);
       }
     );
@@ -118,9 +115,7 @@ export class ValidasiComponent implements OnInit, OnDestroy {
       .then((result) => {
         this.getListUser();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 
   handleDelete(payload: any) {
@@ -136,11 +131,8 @@ export class ValidasiComponent implements OnInit, OnDestroy {
     modalRef.componentInstance.fromParent = data;
     modalRef.result
       .then((result) => {
-        // console.log(result);
         this.getListUser();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 }

@@ -12,7 +12,7 @@ export class CardSiswaComponent implements OnInit {
   @Output() remove: EventEmitter<any> = new EventEmitter();
   constructor() {}
   ngOnInit(): void {
-    console.log('this.payload', this.payload);
+    // console.log('this.payload', this.payload);
   }
 
   show = false;
@@ -21,11 +21,9 @@ export class CardSiswaComponent implements OnInit {
   }
 
   editClicked(payload: any): void {
-    console.log('click edit');
     this.edit.emit(payload);
   }
   removeClicked(payload: any): void {
-    console.log('click delete');
     this.remove.emit(payload);
   }
 }

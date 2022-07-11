@@ -32,11 +32,9 @@ export class JurusanComponent implements OnInit {
       (response: any) => {
         this.listJurusan = response.data;
         this.totalJurusan = response.total;
-        console.log('response', response);
       },
       (err) => {
         const msg = err.message;
-        console.log('errorMessage: ', msg);
         this._toastService.error(msg);
       }
     );
@@ -52,12 +50,9 @@ export class JurusanComponent implements OnInit {
     modalRef.componentInstance.fromParent = data;
     modalRef.result
       .then((result) => {
-        // console.log(result);
         this.getListJurusan();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 
   handleEdit(payload: any) {
@@ -72,9 +67,7 @@ export class JurusanComponent implements OnInit {
       .then((result) => {
         this.getListJurusan();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 
   handleDelete(payload: any) {
@@ -92,8 +85,6 @@ export class JurusanComponent implements OnInit {
       .then((result) => {
         this.getListJurusan();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 }

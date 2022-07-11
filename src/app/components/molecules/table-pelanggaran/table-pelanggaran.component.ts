@@ -20,11 +20,9 @@ export class TablePelanggaranComponent implements OnInit {
     };
   }
   editClicked(payload: any): void {
-    console.log('click edit', payload);
     this.edit.emit(payload);
   }
   removeClicked(payload: any): void {
-    console.log('click delete', payload);
     this.remove.emit(payload);
   }
 }

@@ -32,12 +32,9 @@ export class KelasComponent implements OnInit {
     this.jurusanService.getAllJurusan().subscribe(
       (response: any) => {
         this.listJurusan = response.data;
-
-        console.log('response Jurusan', response);
       },
       (err) => {
         const msg = err.message;
-        console.log('errorMessage: ', msg);
         this._toastService.error(msg);
       }
     );
@@ -48,11 +45,9 @@ export class KelasComponent implements OnInit {
       (response: any) => {
         this.listKelas = response.data;
         this.totalKelas = response.total;
-        console.log('response Kelas', response);
       },
       (err) => {
         const msg = err.message;
-        // console.log('errorMessage: ', msg);
         this._toastService.error(msg);
       }
     );
@@ -72,12 +67,9 @@ export class KelasComponent implements OnInit {
     modalRef.componentInstance.fromParent = data;
     modalRef.result
       .then((result) => {
-        // console.log(result);
         this.getListKelas();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 
   handleEdit(payload: any) {
@@ -94,12 +86,9 @@ export class KelasComponent implements OnInit {
     modalRef.componentInstance.fromParent = data;
     modalRef.result
       .then((result) => {
-        // console.log(result);
         this.getListKelas();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 
   handleDelete(payload: any) {
@@ -115,11 +104,8 @@ export class KelasComponent implements OnInit {
     modalRef.componentInstance.fromParent = data;
     modalRef.result
       .then((result) => {
-        // console.log(result);
         this.getListKelas();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 }

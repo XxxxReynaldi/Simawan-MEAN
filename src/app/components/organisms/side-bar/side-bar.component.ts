@@ -57,7 +57,6 @@ export class SideBarComponent implements OnInit {
       },
       (err) => {
         const msg = err.message;
-        // console.log('errorMessage: ', msg);
         this._toastService.error(msg);
       }
     );

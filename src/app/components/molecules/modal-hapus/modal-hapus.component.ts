@@ -36,7 +36,6 @@ export class ModalHapusComponent implements OnInit {
   label = '';
 
   ngOnInit(): void {
-    // console.log('fromParent', this.fromParent);
     switch (this.fromParent.suffix) {
       case 'Jurusan':
         this.label = this.fromParent.payload.paketKeahlian;
@@ -78,80 +77,66 @@ export class ModalHapusComponent implements OnInit {
         );
         destroyJurusan.subscribe(
           (response) => {
-            console.log(`response `, response);
             this._toastService.success('Data Berhasil Dihapus');
             this.closeModal();
           },
           (err) => {
-            console.log('Error: ', err.error.data.errors);
             this._toastService.error('Data Gagal Dihapus');
           }
         );
         break;
       case 'Kelas':
-        console.log('id', this.fromParent.payload._id);
         const destroyKelas = this.kelasService.destroyKelas(
           this.fromParent.payload._id
         );
         destroyKelas.subscribe(
           (response) => {
-            console.log(`response `, response);
             this._toastService.success('Data Berhasil Dihapus');
             this.closeModal();
           },
           (err) => {
-            console.log('Error: ', err.error.data.errors);
             this._toastService.error('Data Gagal Dihapus');
           }
         );
         break;
       case 'Foto User':
-        console.log('id', this.fromParent.payload._id);
         const removePhoto = this.userService.removePhoto(
           this.fromParent.payload._id
         );
         removePhoto.subscribe(
           (response) => {
-            console.log(`response `, response);
             this._toastService.success('Data Berhasil Dihapus');
             this.closeModal();
           },
           (err) => {
-            console.log('Error: ', err);
             this._toastService.error('Data Gagal Dihapus');
           }
         );
         break;
       case 'User':
-        console.log('id', this.fromParent.payload._id);
         const destroyUser = this.validasiUserService.destroyUser(
           this.fromParent.payload._id
         );
         destroyUser.subscribe(
           (response) => {
-            console.log(`response `, response);
             this._toastService.success('Data Berhasil Dihapus');
             this.closeModal();
           },
           (err) => {
-            console.log('Error: ', err);
             this._toastService.error('Data Gagal Dihapus');
           }
         );
         break;
       case 'Pelanggaran':
-        console.log('id', this.fromParent.payload._id);
         const destroyPelanggaran = this.pelanggaranService.destroyPelanggaran(
           this.fromParent.payload._id
         );
         destroyPelanggaran.subscribe(
           (response) => {
-            console.log(`response `, response);
             this._toastService.success('Data Berhasil Dihapus');
             this.closeModal();
           },
           (err) => {
-            console.log('Error: ', err);
             this._toastService.error('Data Gagal Dihapus');
           }
         );

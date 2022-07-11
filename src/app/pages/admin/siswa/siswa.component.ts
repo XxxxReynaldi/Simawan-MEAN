@@ -30,11 +30,9 @@ export class SiswaComponent implements OnInit {
       (response: any) => {
         this.listSiswa = response.data;
         this.totalSiswa = response.total;
-        console.log('response', response);
       },
       (err) => {
         const msg = err.message;
-        console.log('errorMessage: ', msg);
         this._toastService.error(msg);
       }
     );

@@ -80,14 +80,12 @@ export class ModalPelanggaranComponent implements OnInit {
 
           storeResponse.subscribe(
             (response) => {
-              // console.log(`response `, response);
               this._toastService.success('Data Berhasil Ditambahkan');
               this.pelanggaranForm.reset();
               this.closeModal();
             },
             (err) => {
               const msg = err.error.data.errors;
-              // console.log('errorMessage: ', msg);
               this._toastService.error('Data Gagal Ditambahkan');
 
               Object.entries(msg).map(([key, value]: any) => {
@@ -107,14 +105,12 @@ export class ModalPelanggaranComponent implements OnInit {
           );
           updateResponse.subscribe(
             (response) => {
-              // console.log(`response `, response);
               this._toastService.success('Data Berhasil Disimpan');
               this.pelanggaranForm.reset();
               this.closeModal();
             },
             (err) => {
               const msg = err.error.data.errors;
-              // console.log('errorMessage: ', msg);
               this._toastService.error('Data Gagal Disimpan');
 
               Object.entries(msg).map(([key, value]: any) => {

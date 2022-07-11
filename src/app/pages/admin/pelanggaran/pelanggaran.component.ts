@@ -35,11 +35,9 @@ export class PelanggaranComponent implements OnInit {
         this.listPelanggaran = response.data;
         this.totalPelanggaran = response.total;
         this.setCollection(this.listPelanggaran);
-        console.log('response', response);
       },
       (err) => {
         const msg = err.message;
-        console.log('errorMessage: ', msg);
         this._toastService.error(msg);
       }
     );
@@ -68,16 +66,12 @@ export class PelanggaranComponent implements OnInit {
     modalRef.componentInstance.fromParent = data;
     modalRef.result
       .then((result) => {
-        // console.log(result);
         this.getListPelanggaran();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 
   handleEdit(payload: any) {
-    console.log('payload', payload);
     const modalRef = this.modalService.open(ModalPelanggaranComponent);
     let data = {
       prefix: 'Edit',
@@ -89,9 +83,7 @@ export class PelanggaranComponent implements OnInit {
       .then((result) => {
         this.getListPelanggaran();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 
   handleDelete(payload: any) {
@@ -109,8 +101,6 @@ export class PelanggaranComponent implements OnInit {
       .then((result) => {
         this.getListPelanggaran();
       })
-      .catch((error) => {
-        // console.log(error);
-      });
+      .catch((error) => {});
   }
 }

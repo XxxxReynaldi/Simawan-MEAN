@@ -19,11 +19,9 @@ export class CardJurusanComponent implements OnInit {
   }
 
   editClicked(payload: any): void {
-    // console.log('click edit', payload);
     this.edit.emit(payload);
   }
   removeClicked(id: any): void {
-    // console.log('click delete', id);
     this.remove.emit(id);
   }
 }

@@ -66,8 +66,6 @@ export class PelanggaranService {
       // server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(error);
-    console.log(errorMessage);
 
     return throwError(() => {
       return error;

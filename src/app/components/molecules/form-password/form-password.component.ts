@@ -46,7 +46,6 @@ export class FormPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log('payload', this.payload);
     this.passwordForm = this.fb.group({
       _id: [''],
       oldPassword: ['', Validators.required],
@@ -55,7 +54,6 @@ export class FormPasswordComponent implements OnInit {
     });
 
     this.editForm();
-    // console.log('payload pw', this.passwordForm);
   }
 
   editForm() {
@@ -78,23 +76,18 @@ export class FormPasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log('this.passwordForm.valid', this.passwordForm.valid);
-    console.log('this.passwordForm.value', this.passwordForm.value);
     if (this.passwordForm.valid) {
-      console.log(this.passwordForm.value);
       const updateResponse = this.service.updatePassword(
         this.passwordForm.value,
         this.passwordForm.value._id
       );
       updateResponse.subscribe(
         (response) => {
-          console.log(`response `, response);
           this._toastService.success('Data Berhasil Disimpan');
           this.passwordForm.reset();
         },
         (err) => {
           const msg = err.error.fields;
-          // console.log('errorMessage: ', msg);
           this._toastService.error('Data Gagal Disimpan');
 
           Object.entries(msg).map(([key, value]: any) => {

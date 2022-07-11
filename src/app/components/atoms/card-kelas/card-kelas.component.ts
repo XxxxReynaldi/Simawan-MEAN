@@ -25,7 +25,6 @@ export class CardKelasComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     // changes.prop contains the old and the new value...
-    // console.log('kelasForm', this.payload);
     if (this.payload.tingkatan != null) {
       if (this.payload.tingkatan.hasOwnProperty('value')) {
         const tingkatan = this.payload.tingkatan.value;
@@ -40,11 +39,9 @@ export class CardKelasComponent implements OnInit, OnChanges {
   }
 
   editClicked(payload: any): void {
-    console.log('click edit', payload);
     this.edit.emit(payload);
   }
   removeClicked(payload: any): void {
-    console.log('click delete', payload);
     this.remove.emit(payload);
   }
 }
