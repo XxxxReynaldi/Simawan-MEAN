@@ -1,0 +1,61 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="profileForm" class="cf" novalidate>
+  <div class="mb-3">
+    <label class="form-label label">Email</label>
+    <input
+      placeholder="Masukkan email"
+      type="email"
+      class="form-control input"
+      formControlName="email"
+      [ngClass]="{
+        'is-invalid': submitted && myForm['email'].errors
+      }"
+      required
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="(myForm['email'].touched || submitted) &&
+            myForm['email'].errors?.['required']
+          "
+    >
+      Email harus diisi
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="(myForm['email'].touched || submitted) && myForm['email'].errors"
+    >
+      {{ errorMessage["email"] }}
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label label">Nama Lengkap</label>
+    <input
+      placeholder="Masukkan nama lengkap"
+      class="form-control input"
+      formControlName="namaLengkap"
+      [ngClass]="{
+        'is-invalid': submitted && myForm['namaLengkap'].errors
+      }"
+      required
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="(myForm['namaLengkap'].touched || submitted) &&
+            myForm['namaLengkap'].errors?.['required']
+          "
+    >
+      Nama lengkap harus diisi
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        (myForm['namaLengkap'].touched || submitted) &&
+        myForm['namaLengkap'].errors
+      "
+    >
+      {{ errorMessage["namaLengkap"] }}
+    </div>
+  </div>
+  <button type="submit" class="mt-4 float-end btn btn-primary button-text">
+    Simpan
+  </button>
+</form>

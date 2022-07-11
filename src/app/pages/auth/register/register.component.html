@@ -1,0 +1,282 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <div class="card">
+        <div>
+          <div class="card-body">
+            <h3 class="card-title title">Sign Up</h3>
+            <div style="height: 30px"></div>
+            <form [formGroup]="registerForm" (ngSubmit)="proceedRegister()">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="mb-3">
+                      <label class="form-label label">Nama Lengkap </label>
+                      <input
+                        class="form-control input"
+                        placeholder="Masukkan nama lengkap"
+                        formControlName="namaLengkap"
+                        [ngClass]="{
+                          'is-invalid':
+                            submitted && myForm['namaLengkap'].errors
+                        }"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['namaLengkap'].touched || submitted) &&
+                          myForm['namaLengkap'].errors?.['required']
+                        "
+                      >
+                        Nama lengkap harus diisi
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['namaLengkap'].touched || submitted) &&
+                          myForm['namaLengkap'].errors?.['minlength']
+                        "
+                      >
+                        Minimal harus 4 karakter
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['namaLengkap'].touched || submitted) &&
+                          myForm['namaLengkap'].errors?.['pattern']
+                        "
+                      >
+                        Harus menggunakan huruf
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          (myForm['namaLengkap'].touched || submitted) &&
+                          myForm['namaLengkap'].errors
+                        "
+                      >
+                        {{ errorMessage }}
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label label">NISN </label>
+                      <input
+                        class="form-control input"
+                        placeholder="Masukkan NISN"
+                        formControlName="NISN"
+                        [ngClass]="{
+                          'is-invalid': submitted && myForm['NISN'].errors
+                        }"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          (myForm['NISN'].touched || submitted) &&
+                          myForm['NISN'].errors?.['required']
+                        "
+                      >
+                        NISN harus diisi
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          (myForm['NISN'].touched || submitted) &&
+                          myForm['NISN'].errors
+                        "
+                      >
+                        {{ errorMessage["NISN"] }}
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label label"
+                        >Tempat Lahir / Tanggal Lahir
+                      </label>
+                      <div class="row">
+                        <div class="col-7">
+                          <input
+                            class="form-control input"
+                            placeholder="Masukkan tempat lahir"
+                            formControlName="tempatLahir"
+                            [ngClass]="{
+                              'is-invalid':
+                                submitted && myForm['tempatLahir'].errors
+                            }"
+                          />
+                          <div
+                            class="invalid-feedback"
+                            *ngIf="(myForm['tempatLahir'].touched || submitted) &&
+                            myForm['tempatLahir'].errors?.['required']"
+                          >
+                            Tempat lahir harus diisi
+                          </div>
+                        </div>
+                        <div class="col-5">
+                          <input
+                            type="date"
+                            class="form-control input"
+                            placeholder="Masukkan tanggal lahir"
+                            formControlName="tanggalLahir"
+                            [ngClass]="{
+                              'is-invalid':
+                                submitted && myForm['tanggalLahir'].errors
+                            }"
+                          />
+                          <div
+                            class="invalid-feedback"
+                            *ngIf="(myForm['tanggalLahir'].touched || submitted) &&
+                            myForm['tanggalLahir'].errors?.['required']"
+                          >
+                            Tanggal lahir harus diisi
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label label">Nama Ibu </label>
+                      <input
+                        class="form-control input"
+                        placeholder="Masukkan nama ibu"
+                        formControlName="namaIbu"
+                        [ngClass]="{
+                          'is-invalid': submitted && myForm['namaIbu'].errors
+                        }"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['namaIbu'].touched || submitted) &&
+                            myForm['namaIbu'].errors?.['required']"
+                      >
+                        Nama Ibu harus diisi
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          (myForm['namaIbu'].touched || submitted) &&
+                          myForm['namaIbu'].errors
+                        "
+                      >
+                        {{ errorMessage }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="mb-3">
+                      <label class="form-label label">Email</label>
+                      <input
+                        type="email"
+                        class="form-control input"
+                        placeholder="Masukkan email"
+                        formControlName="email"
+                        [ngClass]="{
+                          'is-invalid': submitted && myForm['email'].errors
+                        }"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['email'].touched || submitted) &&
+                            myForm['email'].errors?.['required']"
+                      >
+                        Email harus diisi
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['email'].touched || submitted) &&
+                            myForm['email'].errors?.['email']"
+                      >
+                        Penulisan Email harus benar
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          (myForm['email'].touched || submitted) &&
+                          myForm['email'].errors
+                        "
+                      >
+                        {{ errorMessage["email"] }}
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label label">Password</label>
+                      <input
+                        type="password"
+                        class="form-control input"
+                        placeholder="Masukkan password"
+                        formControlName="password"
+                        [ngClass]="{
+                          'is-invalid': submitted && myForm['password'].errors
+                        }"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['password'].touched || submitted) &&
+                            myForm['password'].errors?.['required']"
+                      >
+                        Password harus diisi
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          (myForm['password'].touched || submitted) &&
+                          myForm['password'].errors
+                        "
+                      >
+                        {{ errorMessage }}
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label label">Telp</label>
+                      <input
+                        class="form-control input"
+                        placeholder="Masukkan telp"
+                        formControlName="telp"
+                        [ngClass]="{
+                          'is-invalid': submitted && myForm['telp'].errors
+                        }"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['telp'].touched || submitted) &&
+                            myForm['telp'].errors?.['required']"
+                      >
+                        Telpon harus diisi
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['telp'].touched || submitted) &&
+                            myForm['telp'].errors?.['maxlength']"
+                      >
+                        Maksimal 13 karakter
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="(myForm['telp'].touched || submitted) &&
+                            myForm['telp'].errors?.['pattern']"
+                      >
+                        Inputan salah
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          (myForm['telp'].touched || submitted) &&
+                          myForm['telp'].errors
+                        "
+                      >
+                        {{ errorMessage["telp"] }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="height: 30px"></div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div style="height: 20px"></div>
+              <p class="rp-text-info" style="text-align: 'center'">
+                Sudah punya akun?
+
+                <a routerLink="/auth/login">Login disini</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

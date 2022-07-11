@@ -1,0 +1,215 @@
+<app-modal-header
+  [prefix]="fromParent.prefix"
+  suffix="Kelas"
+></app-modal-header>
+
+<form novalidate [formGroup]="kelasForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card-center">
+            <div class="col pt-4">
+              <app-card-kelas [payload]="kelasForm.value"></app-card-kelas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label class="form-label label">Tingkatan</label>
+            <ng-select
+              formControlName="tingkatan"
+              [items]="tingkatan"
+              [ngClass]="{
+                'is-invalid': submitted && myForm['tingkatan'].errors
+              }"
+            >
+            </ng-select>
+            <div
+              class="invalid-feedback"
+              *ngIf="(myForm['tingkatan'].touched || submitted) &&
+                myForm['tingkatan'].errors?.['required']"
+            >
+              Tingkatan harus diisi
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                (myForm['tingkatan'].touched || submitted) &&
+                myForm['tingkatan'].errors
+              "
+            >
+              {{ errorMessage["tingkatan"] }}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label label">Keahlian </label>
+            <ng-select
+              formControlName="keahlian"
+              [items]="listJurusan"
+              [searchable]="true"
+              bindLabel="paketKeahlian"
+              [ngClass]="{
+                'is-invalid': submitted && myForm['keahlian'].errors
+              }"
+            >
+            </ng-select>
+            <div
+              class="invalid-feedback"
+              *ngIf="(myForm['keahlian'].touched || submitted) &&
+                myForm['keahlian'].errors?.['required']"
+            >
+              Keahlian harus diisi
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                (myForm['keahlian'].touched || submitted) &&
+                myForm['keahlian'].errors
+              "
+            >
+              {{ errorMessage["keahlian"] }}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label label">Abjad Kelas</label>
+            <input
+              placeholder="Masukkan Abjad Kelas"
+              class="form-control input"
+              formControlName="abjad"
+              [ngClass]="{
+                'is-invalid': submitted && myForm['abjad'].errors
+              }"
+              required
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="(myForm['abjad'].touched || submitted) &&
+                myForm['abjad'].errors?.['required']"
+            >
+              Abjad harus diisi
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                (myForm['abjad'].touched || submitted) && myForm['abjad'].errors
+              "
+            >
+              {{ errorMessage["abjad"] }}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label label">Tahun Ajaran</label
+            ><input
+              placeholder="Masukkan Tahun Ajaran"
+              type="number"
+              class="form-control input"
+              formControlName="tahunAjaran"
+              [ngClass]="{
+                'is-invalid': submitted && myForm['tahunAjaran'].errors
+              }"
+              required
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="(myForm['tahunAjaran'].touched || submitted) &&
+                myForm['tahunAjaran'].errors?.['required']"
+            >
+              Tahun Ajaran harus diisi
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                (myForm['tahunAjaran'].touched || submitted) &&
+                myForm['tahunAjaran'].errors
+              "
+            >
+              {{ errorMessage["tahunAjaran"] }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label label">Keterangan</label>
+        <textarea
+          placeholder="Tulis bila perlu"
+          class="form-control input"
+          formControlName="keterangan"
+        ></textarea>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <div class="mb-3">
+            <label class="form-label label">Kode</label>
+            <input
+              placeholder="Masukkan Kode"
+              class="form-control input"
+              formControlName="kode"
+              [ngClass]="{
+                'is-invalid': submitted && myForm['kode'].errors
+              }"
+              required
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="(myForm['kode'].touched || submitted) &&
+                myForm['kode'].errors?.['required']"
+            >
+              Kode harus diisi
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                (myForm['kode'].touched || submitted) && myForm['kode'].errors
+              "
+            >
+              {{ errorMessage["kode"] }}
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="btn-position-center">
+            <button
+              type="button"
+              (click)="handleGenerateKode()"
+              class="btn btn-outline-dark button-text"
+            >
+              Generate
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label label">Status Jurusan</label>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            formControlName="status"
+            [checked]="myForm['status'].value === 'Y' ? 'checked' : ''"
+          /><label class="form-check-label">Aktif</label>
+          <div class="invalid-feedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark button-text"
+      (click)="closeModal()"
+    >
+      <i class="fa-solid fa-xmark"></i> Close
+    </button>
+    <button
+      type="submit"
+      class="btn button-text"
+      [ngClass]="
+        fromParent.prefix === 'Tambah' ? 'btn-primary ' : 'btn-success'
+      "
+    >
+      <i class="fa-solid fa-check"></i> Simpan
+    </button>
+  </div>
+</form>

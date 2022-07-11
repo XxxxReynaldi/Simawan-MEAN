@@ -1,0 +1,176 @@
+<app-modal-header
+  [prefix]="fromParent.prefix"
+  suffix="Siswa"
+></app-modal-header>
+
+<form novalidate [formGroup]="validasiForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <label class="form-label label">Kelas </label>
+          <ng-select formControlName="kelas">
+            <ng-option *ngFor="let item of listKelas" [value]="item">
+              {{ item.tingkatan }}-{{ item.keahlian.singkatan }}-{{
+                item.abjad | uppercase
+              }}
+            </ng-option>
+          </ng-select>
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['kelas'].touched || submitted) &&
+                myForm['kelas'].errors?.['required']"
+          >
+            Kelas harus diisi
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              (myForm['kelas'].touched || submitted) && myForm['kelas'].errors
+            "
+          >
+            {{ errorMessage["kelas"] }}
+          </div>
+          <div style="height: 16px"></div>
+          <app-card-kelas
+            [payload]="
+              myForm['kelas'].value === null ? cardKelas : myForm['kelas'].value
+            "
+          ></app-card-kelas>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+          <table class="table table-sm table-hover" style="font-size: small">
+            <tbody>
+              <tr>
+                <td width="30%">Nama Lengkap</td>
+                <td width="5%">:</td>
+                <td>{{ user.namaLengkap }}</td>
+              </tr>
+              <tr>
+                <td>NISN</td>
+                <td>:</td>
+                <td>{{ user.NISN }}</td>
+              </tr>
+              <tr>
+                <td>Tempat Lahir / Tanggal Lahir</td>
+                <td>:</td>
+                <td>
+                  {{ user.tempatLahir }} /
+                  {{ user.tanggalLahir | date: "dd MMMM yyyy" }}
+                </td>
+              </tr>
+              <tr>
+                <td>Nama Ibu</td>
+                <td>:</td>
+                <td>{{ user.namaIbu }}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td>{{ user.email }}</td>
+              </tr>
+              <tr>
+                <td>Telp</td>
+                <td>:</td>
+                <td>{{ user.telp }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- {{ this.validasiForm.value | json }} -->
+          <div class="row">
+            <div class="col-10">
+              <div class="mb-3">
+                <label class="form-label label">Kode</label>
+                <div class="row">
+                  <div class="col-5">
+                    <input
+                      type="number"
+                      class="form-control input"
+                      formControlName="prefixNIS"
+                      [ngClass]="{
+                        'is-invalid': submitted && myForm['prefixNIS'].errors
+                      }"
+                      [value]="
+                        myForm['kelas'].value === null ? '' : setPrefixNIS()
+                      "
+                      readonly
+                      required
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="(myForm['prefixNIS'].touched || submitted) &&
+                      myForm['prefixNIS'].errors?.['required']"
+                    >
+                      Tingkatan harus diisi
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        (myForm['prefixNIS'].touched || submitted) &&
+                        myForm['prefixNIS'].errors
+                      "
+                    >
+                      {{ errorMessage["prefixNIS"] }}
+                    </div>
+                  </div>
+                  <div class="col-7">
+                    <input
+                      placeholder="Masukkan NIS"
+                      type="number"
+                      class="form-control input"
+                      formControlName="NIS"
+                      [ngClass]="{
+                        'is-invalid': submitted && myForm['NIS'].errors
+                      }"
+                      required
+                    />
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="(myForm['NIS'].touched || submitted) &&
+                      myForm['NIS'].errors?.['required']"
+                    >
+                      NIS harus diisi
+                    </div>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        (myForm['NIS'].touched || submitted) &&
+                        myForm['NIS'].errors
+                      "
+                    >
+                      {{ errorMessage["NIS"] }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="btn-position-center">
+                <button
+                  type="button"
+                  class="btn btn-outline-dark"
+                  (click)="handleNIS()"
+                >
+                  Generate
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button
+      type="button"
+      class="btn btn-outline-dark button-text"
+      (click)="closeModal()"
+    >
+      <i class="fa-solid fa-xmark"></i> Close
+    </button>
+    <button type="submit" class="btn button-text btn-primary">
+      <i class="fa-solid fa-check"></i> Simpan
+    </button>
+  </div>
+</form>

@@ -1,0 +1,31 @@
+<section>
+  <app-header
+    [title]="'Jurusan'"
+    [subtitle]="'Menampilkan data seluruh jurusan'"
+  ></app-header>
+  <app-card-header
+    [title]="'Total jurusan saat ini'"
+    [subtitle]="'Klik tombol di samping kiri untuk menambahkan jurusan baru.'"
+    [countNum]="totalJurusan"
+    (add)="handleAdd()"
+  ></app-card-header>
+  <div style="height: 48px"></div>
+  <div
+    class="container"
+    [ngStyle]="{ 'padding-left': '0px', 'padding-right': '32px' }"
+  >
+    <div class="row">
+      <div
+        class="col-xs-6 col-md-4"
+        style="padding-bottom: '24px'"
+        *ngFor="let item of listJurusan"
+      >
+        <app-card-jurusan
+          [payload]="item"
+          (edit)="handleEdit(item)"
+          (remove)="handleDelete(item)"
+        ></app-card-jurusan>
+      </div>
+    </div>
+  </div>
+</section>

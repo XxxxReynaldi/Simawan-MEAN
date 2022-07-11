@@ -1,0 +1,32 @@
+<section>
+  <app-header
+    [title]="'Kelas'"
+    [subtitle]="'Menampilkan data seluruh kelas'"
+  ></app-header>
+  <app-card-header
+    [title]="'Total kelas saat ini'"
+    [subtitle]="'Klik tombol di samping kiri untuk menambahkan kelas baru.'"
+    [countNum]="totalKelas"
+    (add)="handleAdd()"
+  ></app-card-header>
+  <div style="height: 48px"></div>
+  <div
+    class="container"
+    [ngStyle]="{ 'padding-left': '0px', 'padding-right': '32px' }"
+  >
+    <div class="row">
+      <div
+        class="col-xs-6 col-md-4"
+        style="padding-bottom: '24px'"
+        *ngFor="let item of listKelas"
+      >
+        <app-card-kelas
+          [dropdown]="true"
+          [payload]="item"
+          (edit)="handleEdit(item)"
+          (remove)="handleDelete(item)"
+        ></app-card-kelas>
+      </div>
+    </div>
+  </div>
+</section>

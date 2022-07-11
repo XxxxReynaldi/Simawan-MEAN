@@ -1,0 +1,116 @@
+<app-modal-header
+  [prefix]="fromParent.prefix"
+  suffix="Pelanggaran"
+></app-modal-header>
+
+<form novalidate [formGroup]="pelanggaranForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="mb-3">
+          <label class="form-label label">Jenis Pelanggaran</label>
+          <input
+            placeholder="Masukkan Jenis Pelanggaran"
+            class="form-control input"
+            formControlName="jenisPelanggaran"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['jenisPelanggaran'].errors
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['jenisPelanggaran'].touched || submitted) &&
+                myForm['jenisPelanggaran'].errors?.['required']"
+          >
+            Pelanggaran harus diisi
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              (myForm['jenisPelanggaran'].touched || submitted) &&
+              myForm['jenisPelanggaran'].errors
+            "
+          >
+            {{ errorMessage["jenisPelanggaran"] }}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label label">Pilih Kategori</label>
+          <ng-select
+            formControlName="kategori"
+            [items]="options"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['kategori'].errors
+            }"
+          >
+          </ng-select>
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['kategori'].touched || submitted) &&
+              myForm['kategori'].errors?.['required']"
+          >
+            Kategori harus diisi
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              (myForm['kategori'].touched || submitted) &&
+              myForm['kategori'].errors
+            "
+          >
+            {{ errorMessage["kategori"] }}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label label">Jumlah Poin</label>
+          <input
+            type="number"
+            placeholder="Masukkan Jumlah Poin"
+            class="form-control input"
+            formControlName="jumlahPoin"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['jumlahPoin'].errors
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['jumlahPoin'].touched || submitted) &&
+               myForm['jumlahPoin'].errors?.['required']"
+          >
+            Pelanggaran harus diisi
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              (myForm['jumlahPoin'].touched || submitted) &&
+              myForm['jumlahPoin'].errors
+            "
+          >
+            {{ errorMessage["jumlahPoin"] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark button-text"
+      (click)="closeModal()"
+    >
+      <i class="fa-solid fa-xmark"></i> Close
+    </button>
+    <button
+      type="submit"
+      class="btn button-text"
+      [ngClass]="
+        fromParent.prefix === 'Tambah' ? 'btn-primary ' : 'btn-success'
+      "
+    >
+      <i class="fa-solid fa-check"></i> Simpan
+    </button>
+  </div>
+</form>

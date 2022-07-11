@@ -1,0 +1,62 @@
+<app-modal-header
+  [prefix]="fromParent.prefix"
+  suffix="Foto Profile"
+></app-modal-header>
+<form novalidate [formGroup]="uploadImgForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="mb-2">
+          <div class="image-upload text-center">
+            <label for="foto">
+              <div class="position-relative my-auto mx-auto">
+                <div class="profile-div blur">
+                  <img
+                    [src]="defaultPreview"
+                    alt="Upload image"
+                    class="upload-img"
+                    width="300"
+                    height="300"
+                  />
+                </div>
+              </div>
+            </label>
+            <input
+              id="foto"
+              type="file"
+              accept=".jpg,.jpeg,.png,.svg"
+              (change)="handleEdit($event)"
+              style="display: 'none'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer justify-content-between">
+    <button
+      type="button"
+      class="btn btn-outline-dark button-text"
+      (click)="closeModal()"
+    >
+      <i class="fa-solid fa-xmark"></i> Close
+    </button>
+    <button
+      *ngIf="fromParent.payload.foto !== 'default.jpg'"
+      class="btn btn-danger button-text"
+      (click)="handleDelete()"
+    >
+      <i class="fa-solid fa-trash"></i> Hapus
+    </button>
+    <button
+      type="submit"
+      class="btn button-text"
+      [ngClass]="
+        fromParent.prefix === 'Tambah' ? 'btn-primary ' : 'btn-success'
+      "
+    >
+      <i class="fa-solid fa-check"></i> Simpan
+    </button>
+  </div>
+</form>

@@ -1,0 +1,86 @@
+<app-header
+  [title]="'Validasi Siswa'"
+  [subtitle]="'Menampilkan data user yang telah mendaftar'"
+></app-header>
+<div style="height: 48px"></div>
+<div class="container" style="padding-left: 0px; padding-right: 32px">
+  <div class="card card-validasi">
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 my-auto">
+            <div class="card-title h5">User terdaftar :</div>
+          </div>
+        </div>
+        <div style="height: 24px"></div>
+        <div class="row">
+          <div class="col">
+            <div class="container container-validasi">
+              <!-- <app-table-user></app-table-user> -->
+              <!-- <table datatable [dtOptions]="dtOptions" class="custom-table"> -->
+              <table class="custom-table">
+                <thead class="custom-thead custom-thead-row">
+                  <th class="custom-thead-col">No</th>
+                  <th class="custom-thead-col">NISN</th>
+                  <th class="custom-thead-col">Nama Lengkap</th>
+                  <!-- <th class="custom-thead-col">Telp</th> -->
+                  <!-- <th class="custom-thead-col">Nama Ibu</th> -->
+                  <th class="custom-thead-col">Email</th>
+                  <th class="custom-thead-col">Opsi</th>
+                </thead>
+                <tbody *ngIf="listUser.length != 0" class="custom-tbody">
+                  <tr
+                    *ngFor="let item of listUser; index as i"
+                    class="custom-tbody-row"
+                  >
+                    <td class="custom-tbody-col1 custom-tbody-col2">
+                      <div class="tag">{{ i + 1 }}</div>
+                    </td>
+                    <td class="custom-tbody-col1 custom-tbody-col2">
+                      <div class="tag">{{ item.NISN }}</div>
+                    </td>
+                    <td class="custom-tbody-col1 custom-tbody-col2">
+                      <div class="tag">{{ item.namaLengkap }}</div>
+                    </td>
+                    <!-- <td class="custom-tbody-col1 custom-tbody-col2">
+                      <div class="tag">{{ item.telp }}</div>
+                    </td>
+                    <td class="custom-tbody-col1 custom-tbody-col2">
+                      <div class="tag">{{ item.namaIbu }}</div>
+                    </td> -->
+                    <td class="custom-tbody-col1 custom-tbody-col2">
+                      <div class="tag">{{ item.email }}</div>
+                    </td>
+                    <td class="custom-tbody-col1 custom-tbody-col2">
+                      <button
+                        class="btn btn-success"
+                        (click)="handleValidation(item)"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <div style="width: 8px"></div>
+                      <button
+                        class="btn btn-danger"
+                        (click)="handleDelete(item)"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="listUser?.length == 0">
+                  <tr>
+                    <td colspan="3" class="custom-tbody-col1 custom-tbody-col2">
+                      <div class="tag">Data Tidak Ada!</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="height: 48px"></div>

@@ -1,0 +1,22 @@
+<app-modal-header [prefix]="fromParent.prefix" [suffix]="fromParent.suffix">
+</app-modal-header>
+<form novalidate #formHapus="ngForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="container text-center">
+      Apa anda yakin ingin menghapus data {{ fromParent.suffix }} <br />
+      <app-badge-hapus [label]="label"></app-badge-hapus> ?
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark button-text"
+      (click)="closeModal()"
+    >
+      <i class="fa-solid fa-xmark"></i> Batal
+    </button>
+    <button type="submit" class="btn btn-danger button-text">
+      <i class="fa-solid fa-trash"></i> Hapus
+    </button>
+  </div>
+</form>

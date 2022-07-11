@@ -1,0 +1,38 @@
+<div class="sidebar" [ngClass]="collapsed ? '' : 'open'">
+  <div class="logo-details">
+    <i class="bx bxl-c-plus-plus icon-logo"></i>
+    <div class="logo_name">MEAN</div>
+    <i class="bx bx-menu" id="btn-toggle" (click)="toggleCollapse()"></i>
+  </div>
+  <ul class="nav-list">
+    <li
+      *ngFor="let item of menuItems"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="[item.routeLink]" [title]="item.label">
+        <div class="icon">
+          <img [src]="item.icon" />
+        </div>
+        <span class="links_name"> {{ item.label }} </span>
+      </a>
+    </li>
+
+    <li class="profile">
+      <div class="profile-details">
+        <img
+          class="profile-img"
+          src="{{ iconUserProfile }} "
+          alt="profileImg"
+        />
+        <div class="name_job">
+          <div class="name">{{ namaLengkap }}</div>
+          <div class="job">{{ role }}</div>
+        </div>
+      </div>
+      <a routerLink="/auth/login">
+        <i class="bx bx-log-out" id="log_out"></i>
+      </a>
+    </li>
+  </ul>
+</div>

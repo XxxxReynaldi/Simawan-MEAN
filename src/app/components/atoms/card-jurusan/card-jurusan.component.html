@@ -1,0 +1,26 @@
+<div class="overlay" *ngIf="show === true" (click)="setShow(false)"></div>
+<div
+  class="card card-jurusan"
+  [style.background]="payload.warna ? payload.warna : ''"
+>
+  <div class="card-body">
+    <div class="btn-group dropdown float-end" [ngClass]="show ? 'open' : ''">
+      <a class="btn" style="z-index: 4" (click)="setShow(show ? false : true)">
+        <i class="fa-solid fa-angle-down text-white"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right" style="opacity: 1">
+        <li>
+          <a (click)="editClicked(payload)" (mouseup)="setShow(false)">Edit</a>
+        </li>
+        <li>
+          <a (click)="removeClicked(payload._id)" (mouseup)="setShow(false)"
+            >Hapus</a
+          >
+        </li>
+      </ul>
+    </div>
+    <p class="text-singkatan">{{ payload.singkatan }}</p>
+    <p class="text-paket-keahlian">{{ payload.paketKeahlian }}</p>
+    <p class="text-kode">Kode : {{ payload.kode }}</p>
+  </div>
+</div>

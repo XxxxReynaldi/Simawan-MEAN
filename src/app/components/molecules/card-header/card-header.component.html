@@ -1,0 +1,27 @@
+<div class="card card-header">
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="my-auto col-md-1" style="padding: 0">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg"
+            style="border-radius: 50%"
+            (click)="addClicked()"
+          >
+            <i class="fas fa-plus" style="font-size: 1.8rem"></i>
+          </button>
+        </div>
+        <div
+          class="col-md-11"
+          style="border-left: 2px solid rgb(239, 239, 239)"
+        >
+          <div class="card-title h5">{{ title }} : {{ countNum }}</div>
+          <p class="card-text" style="font-size: 12px">
+            {{ subtitle }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

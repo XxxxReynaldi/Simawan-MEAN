@@ -1,0 +1,18 @@
+.button-text {
+  font-size: 0.8rem;
+  text-transform: none;
+}
+
+.card-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.btn-position-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}

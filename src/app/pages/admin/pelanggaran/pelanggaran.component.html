@@ -1,0 +1,76 @@
+<app-header
+  [title]="'Pelanggaran'"
+  [subtitle]="'Menampilkan data seluruh pelanggaran'"
+></app-header>
+<app-card-header
+  [title]="'Total pelanggaran saat ini'"
+  [subtitle]="'Klik tombol di samping kiri untuk menambahkan pelanggaran baru.'"
+  [countNum]="totalPelanggaran"
+  (add)="handleAdd()"
+></app-card-header>
+<div style="height: 48px"></div>
+<div class="container" [ngStyle]="{ padding: '0px 32px 32px 0px' }"></div>
+<div class="card card-pelanggaran">
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 my-auto">
+          <div class="card-title">
+            Jenis pelanggaran beserta poin yang tidak boleh dilakukan sebagai
+            siswa
+          </div>
+        </div>
+      </div>
+      <div style="height: 24px"></div>
+      <div class="row">
+        <div class="col">
+          <ul
+            ngbNav
+            #nav="ngbNav"
+            [(activeId)]="active"
+            class="mb-4 nav justify-content-end nav nav-tabs"
+          >
+            <li [ngbNavItem]="1">
+              <a ngbNavLink>Kelakuan</a>
+              <ng-template ngbNavContent>
+                <div class="container container-tab">
+                  <app-table-pelanggaran
+                    [payload]="listKelakuan"
+                    (edit)="handleEdit($event)"
+                    (remove)="handleDelete($event)"
+                  ></app-table-pelanggaran>
+                </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink>Kerajinan</a>
+              <ng-template ngbNavContent>
+                <div class="container container-tab">
+                  <app-table-pelanggaran
+                    [payload]="listKerajinan"
+                    (edit)="handleEdit($event)"
+                    (remove)="handleDelete($event)"
+                  ></app-table-pelanggaran>
+                </div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink>Kerapian</a>
+              <ng-template ngbNavContent>
+                <div class="container container-tab">
+                  <app-table-pelanggaran
+                    [payload]="listKerapian"
+                    (edit)="handleEdit($event)"
+                    (remove)="handleDelete($event)"
+                  ></app-table-pelanggaran>
+                </div>
+              </ng-template>
+            </li>
+          </ul>
+
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

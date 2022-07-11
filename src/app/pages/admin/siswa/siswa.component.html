@@ -1,0 +1,29 @@
+<app-header
+  [title]="'Siswa'"
+  [subtitle]="'Menampilkan data seluruh siswa'"
+></app-header>
+<app-card-header
+  [title]="'Total siswa saat ini'"
+  [subtitle]="'Klik tombol di samping kiri untuk menambahkan siswa baru.'"
+  [countNum]="totalSiswa"
+  (add)="handleAdd()"
+></app-card-header>
+<div style="height: 48px"></div>
+<div
+  class="container"
+  [ngStyle]="{ 'padding-left': '0px', 'padding-right': '32px' }"
+>
+  <div class="row">
+    <div
+      class="col-xs-6 col-md-3"
+      [ngStyle]="{ 'padding-top': '12px', 'padding-bottom': '12px' }"
+      *ngFor="let item of listSiswa"
+    >
+      <app-card-siswa
+        [payload]="item"
+        (edit)="handleEdit($event)"
+        (remove)="handleDelete($event)"
+      ></app-card-siswa>
+    </div>
+  </div>
+</div>

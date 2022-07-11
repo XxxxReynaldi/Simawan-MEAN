@@ -1,0 +1,56 @@
+<section>
+  <app-header
+    [title]="'Pengaturan'"
+    [subtitle]="'Atur Profile User'"
+  ></app-header>
+  <div style="height: 40px"></div>
+  <div class="card card-profile">
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 my-auto mx-auto">
+            <div class="profile-div position-relative my-auto mx-auto">
+              <a (click)="handleEditImg()">
+                <img
+                  [src]="iconUserProfile"
+                  alt="Picture of the user"
+                  class="profile-img"
+                  width="300"
+                  height="300"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <ul
+              ngbNav
+              #nav="ngbNav"
+              [(activeId)]="active"
+              class="mb-4 nav justify-content-end nav nav-tabs"
+            >
+              <li [ngbNavItem]="1">
+                <a ngbNavLink>Ubah Profile</a>
+                <ng-template ngbNavContent>
+                  <div class="container container-profile">
+                    <app-form-profile [payload]="user"></app-form-profile>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink>Ubah Password</a>
+                <ng-template ngbNavContent>
+                  <div class="container container-password">
+                    <app-form-password [payload]="user"></app-form-password>
+                  </div>
+                </ng-template>
+              </li>
+            </ul>
+
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height: 48px"></div>
+</section>

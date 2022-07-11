@@ -1,0 +1,21 @@
+.body {
+  width: calc(100% - 250px);
+  position: relative;
+  z-index: 0;
+  top: 0;
+  left: 250px;
+  height: 100vh;
+  transition: all 0.5s ease;
+  background: #e4e9f7;
+  padding-left: 32px;
+}
+
+.body-trimmed {
+  width: 100%;
+  left: 72px;
+}
+
+.body-md-screen {
+  width: 100%;
+  left: 72px;
+}

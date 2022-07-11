@@ -1,0 +1,16 @@
+.label {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.button-text {
+  font-size: 0.8rem;
+  text-transform: none;
+}
+
+.btn-position-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}

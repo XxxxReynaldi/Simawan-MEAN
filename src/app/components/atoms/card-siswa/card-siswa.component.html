@@ -1,0 +1,65 @@
+<div class="overlay" *ngIf="show === true" (click)="setShow(false)"></div>
+<div class="card card-siswa">
+  <div class="card-body">
+    <div class="text-center">
+      <span class="picture-student">
+        <span class="cover">
+          <img
+            src="../../../../assets/img/default.jpg"
+            alt="Picture of student"
+            [width]="200"
+            [height]="200"
+          />
+        </span>
+      </span>
+    </div>
+    <h6 class="mt-2">{{ payload.namaLengkap }}</h6>
+    <p class="text-muted" [ngStyle]="{ 'font-size': '14px' }">
+      NIS : {{ payload.NIS }}
+    </p>
+
+    <div
+      [style]="{ position: 'absolute', bottom: '16px' }"
+      class="justify-content-between"
+    >
+      <div class="btn-group dropdown" [ngClass]="show ? 'open' : ''">
+        <p style="font-size: 14px">
+          <!-- max 55 karakter  -->
+          <!-- Jalan Pertamanan IV Kepuharjo Karangploso  -->
+          <span
+            class="badge badge-kelas"
+            [style.background]="
+              payload.kelas.keahlian.warna ? payload.kelas.keahlian.warna : ''
+            "
+          >
+            {{ payload.kelas.tingkatan }}-{{
+              payload.kelas.keahlian.singkatan
+            }}-{{ payload.kelas.abjad | uppercase }}
+          </span>
+        </p>
+        <a
+          class="btn"
+          (click)="setShow(show ? false : true)"
+          [style]="{ 'z-index': 4, left: '60px' }"
+        >
+          <i class="fa-solid fa-angle-down"></i>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-right"
+          [style]="{ opacity: 1, left: '48px' }"
+        >
+          <li>
+            <a (click)="editClicked(payload)" (mouseup)="setShow(false)">
+              Edit
+            </a>
+          </li>
+          <li>
+            <a (click)="removeClicked(payload)" (mouseup)="setShow(false)">
+              Hapus
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

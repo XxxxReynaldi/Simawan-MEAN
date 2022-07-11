@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div>
+          <div class="card-body">
+            <h3 class="card-title title">Sign In</h3>
+            <div style="height: 30px"></div>
+            <form [formGroup]="login" (submit)="proceedLogin()">
+              <div class="mb-3">
+                <label class="form-label label">Email </label>
+                <input
+                  type="email"
+                  class="form-control input"
+                  placeholder="Masukkan email"
+                  formControlName="email"
+                  [ngClass]="{
+                    'is-invalid': submitted && myForm['email'].errors
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="(myForm['email'].touched || submitted) &&
+                  myForm['email'].errors?.['required']
+                "
+                >
+                  Email harus diisi
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="(myForm['email'].touched || submitted) &&
+                  myForm['email'].errors?.['email']
+                "
+                >
+                  Gunakan email yang benar
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    (myForm['email'].touched || submitted) &&
+                    myForm['email'].errors
+                  "
+                >
+                  {{ errorMessage }}
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label label">Password</label>
+                <input
+                  type="password"
+                  class="form-control input"
+                  placeholder="Masukkan password"
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid': submitted && myForm['password'].errors
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="(myForm['password'].touched || submitted) &&
+                  myForm['password'].errors?.['required']
+                "
+                >
+                  Password harus diisi
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    (myForm['password'].touched || submitted) &&
+                    myForm['password'].errors
+                  "
+                >
+                  {{ errorMessage }}
+                </div>
+              </div>
+              <p class="rp-text-info" style="text-align: 'right'">
+                <a href="#">lupa password?</a>
+              </p>
+              <div style="height: 30px"></div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div style="height: 20px"></div>
+              <p class="rp-text-info" style="text-align: 'center'">
+                Belum punya akun?
+                <a routerLink="/auth/register">Buat akun disini</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

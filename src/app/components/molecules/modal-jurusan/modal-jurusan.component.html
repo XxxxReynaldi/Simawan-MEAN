@@ -1,0 +1,169 @@
+<app-modal-header
+  [prefix]="fromParent.prefix"
+  suffix="Jurusan"
+></app-modal-header>
+
+<form novalidate [formGroup]="jurusanForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="mb-3">
+          <label class="form-label label">Bidang Keahlian</label>
+          <input
+            class="form-control input"
+            placeholder="Masukkan bidang keahlian"
+            formControlName="bidangKeahlian"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['bidangKeahlian'].errors
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['bidangKeahlian'].touched || submitted) &&
+              myForm['bidangKeahlian'].errors?.['required']
+            "
+          >
+            Bidang Keahlian harus diisi
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label label">Program Keahlian</label>
+          <input
+            class="form-control input"
+            placeholder="Masukkan program keahlian"
+            formControlName="programKeahlian"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['programKeahlian'].errors
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['programKeahlian'].touched || submitted) &&
+            myForm['programKeahlian'].errors?.['required']
+          "
+          >
+            Program Keahlian harus diisi
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label label">Paket Keahlian</label>
+          <input
+            class="form-control input"
+            placeholder="Masukkan paket keahlian"
+            formControlName="paketKeahlian"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['paketKeahlian'].errors
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['paketKeahlian'].touched || submitted) &&
+            myForm['paketKeahlian'].errors?.['required']
+          "
+          >
+            Paket Keahlian harus diisi
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label label">Singkatan</label>
+          <input
+            class="form-control input"
+            placeholder="Masukkan singkatan"
+            formControlName="singkatan"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['singkatan'].errors
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="(myForm['singkatan'].touched || submitted) &&
+            myForm['singkatan'].errors?.['required']
+          "
+          >
+            Singkatan harus diisi
+          </div>
+        </div>
+        <div *ngIf="fromParent.prefix === 'Tambah'">
+          <div class="mb-3">
+            <label class="form-label label">Kode</label>
+            <input
+              class="form-control input"
+              placeholder="Masukkan kode"
+              formControlName="kode"
+              [ngClass]="{
+                'is-invalid': submitted && myForm['kode'].errors
+              }"
+              required
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="(myForm['kode'].touched || submitted) &&
+                      myForm['kode'].errors?.['required']
+                    "
+            >
+              Kode harus diisi
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                (myForm['kode'].touched || submitted) && myForm['kode'].errors
+              "
+            >
+              {{ errorMessage["kode"] }}
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="exampleColorInput">Warna</label>
+          <input
+            class="form-control form-control-color"
+            placeholder="Pilih Warna Jurusan"
+            type="color"
+            id="exampleColorInput"
+            formControlName="warna"
+            [ngClass]="{
+              'is-invalid': submitted && myForm['warna'].errors
+            }"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label label">Status Jurusan </label>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              formControlName="status"
+              [checked]="myForm['status'].value === 'Y' ? 'checked' : ''"
+            /><label class="form-check-label">Aktif</label>
+          </div>
+        </div>
+        <div class="invalid-feedback" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark button-text"
+      (click)="closeModal()"
+    >
+      <i class="fa-solid fa-xmark"></i> Close
+    </button>
+    <button
+      type="submit"
+      class="btn button-text"
+      [ngClass]="
+        fromParent.prefix === 'Tambah' ? 'btn-primary ' : 'btn-success'
+      "
+    >
+      <i class="fa-solid fa-check"></i> Simpan
+    </button>
+  </div>
+</form>
