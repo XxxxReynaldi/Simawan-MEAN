@@ -13,7 +13,6 @@ import { ValidasiUserService } from 'src/app/services/validasi-user.service';
   styleUrls: ['./validasi.component.css'],
 })
 export class ValidasiComponent implements OnInit, OnDestroy {
-  // dtOptions: DataTables.Settings = {};
   dtOptions: any = {};
   listUser: any = [];
   listKelas = [];
@@ -27,39 +26,12 @@ export class ValidasiComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // const that = this;
-
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthMenu: [5, 10, 15, 25, 50, 100],
       dom: 'irtlp', // manipulate toolbar
       processing: true,
-      // serverSide: true,
-      // ajax: () => {
-      //   that.validasiUserService
-      //     .getAllValidation({ validasi: 'pending' })
-      //     .subscribe((response: any) => {
-      //       this.listUser = response.data;
-      //       console.log('response listUser', response);
-
-      //       // callback({
-      //       //   recordsTotal: response.total,
-      //       //   recordsFiltered: 10,
-      //       //   data: [],
-      //       // });
-      //     });
-      // },
-      // columns: [
-      //   { title: 'No', data: null },
-      //   { title: 'NISN', data: 'NISN' },
-      //   { title: 'Nama Lengkap', data: 'namaLengkap' },
-      //   { title: 'Telp', data: 'telp' },
-      //   { title: 'Nama ibu', data: 'namaIbu' },
-      //   { title: 'Email', data: 'email' },
-      //   { title: 'Opsi', data: null },
-      // ],
-      // responsive: true,
     };
 
     this.getListUser();

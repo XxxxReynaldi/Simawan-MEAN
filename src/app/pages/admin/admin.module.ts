@@ -38,7 +38,6 @@ import { TablePelanggaranComponent } from 'src/app/components/molecules/table-pe
 const routes: Routes = [
   // { path: '', component: AdminComponent },
   // { path: 'kelas', component: KelasComponent },
-  // { path: 'jurusan', component: JurusanComponent },
   {
     path: '',
     component: AdminComponent,
