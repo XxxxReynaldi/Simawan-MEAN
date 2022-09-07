@@ -41,6 +41,20 @@ export class KelasService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  getKelasByFilter(tahunAjaran: any, tingkatan?: string) {
+    let url = '';
+    if (tahunAjaran && tingkatan === undefined) {
+      url += `${this.apiUrl}/find/${tahunAjaran}`;
+    }
+    if (tahunAjaran && tingkatan) {
+      url += `${this.apiUrl}/find/${tahunAjaran}/${tingkatan}`;
+    }
+
+    return this.http
+      .get<KelasTypes>(url)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
   updateKelas(data: any, id: string): Observable<KelasTypes> {
     return this.http.patch<KelasTypes>(`${this.apiUrl}/update/${id}`, data);
   }

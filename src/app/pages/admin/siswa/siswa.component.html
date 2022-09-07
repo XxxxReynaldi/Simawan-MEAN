@@ -9,6 +9,50 @@
   (add)="handleAdd()"
 ></app-card-header>
 <div style="height: 48px"></div>
+<h5>Cari siswa menggunakan filter berikut :</h5>
+<div style="height: 12px"></div>
+<form novalidate [formGroup]="filterForm" (ngSubmit)="filterSiswa()">
+  <div class="row" [ngStyle]="{ 'margin-right': '0px' }">
+    <div class="col-md-4">
+      <input
+        placeholder="Masukkan Tahun ajaran"
+        class="form-control input"
+        formControlName="tahunAjaran"
+        [ngClass]="{
+          'is-invalid': submitted && myForm['tahunAjaran'].errors
+        }"
+        required
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="(myForm['tahunAjaran'].touched || submitted) &&
+              myForm['tahunAjaran'].errors?.['required']"
+      >
+        Tahun ajaran harus diisi
+      </div>
+    </div>
+    <div class="col-md-4">
+      <ng-select formControlName="kelas">
+        <ng-option *ngFor="let item of listKelas" [value]="item">
+          {{ item.tingkatan }}-{{ item.keahlian.singkatan }}-{{
+            item.abjad | uppercase
+          }}
+        </ng-option>
+      </ng-select>
+      <div
+        class="invalid-feedback"
+        *ngIf="(myForm['kelas'].touched || submitted) &&
+            myForm['kelas'].errors?.['required']"
+      >
+        Kelas harus diisi
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="btn button-text btn-primary" type="submit">Cari</button>
+    </div>
+  </div>
+</form>
+<div style="height: 24px"></div>
 <div
   class="container"
   [ngStyle]="{ 'padding-left': '0px', 'padding-right': '32px' }"

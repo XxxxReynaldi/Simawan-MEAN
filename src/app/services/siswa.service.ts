@@ -42,6 +42,20 @@ export class SiswaService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  getSiswaByFilter(tahunAjaran: any, kelas?: string) {
+    let url = '';
+    if (tahunAjaran && kelas === undefined) {
+      url += `${this.apiUrl}/find/${tahunAjaran}`;
+    }
+    if (tahunAjaran && kelas) {
+      url += `${this.apiUrl}/find/${tahunAjaran}/${kelas}`;
+    }
+
+    return this.http
+      .get<SiswaTypes>(url)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
   updateSiswa(data: any, id: string): Observable<SiswaTypes> {
     return this.http.patch<SiswaTypes>(`${this.apiUrl}/update/${id}`, data);
   }
